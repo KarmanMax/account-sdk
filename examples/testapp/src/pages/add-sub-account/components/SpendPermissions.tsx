@@ -29,6 +29,7 @@ export function SpendPermissions({
     }
 
     const signature = localStorage.getItem('base-acc-sdk.demo.spend-permission.signature') as Hex;
+    console.log('signature :>> ', signature);
     const data = JSON.parse(
       localStorage.getItem('base-acc-sdk.demo.spend-permission.data') as string
     );
@@ -62,6 +63,8 @@ export function SpendPermissions({
                   abi: spendPermissionManagerAbi,
                   functionName: 'approveWithSignature',
                   args: [spendPermission, signature],
+                  // functionName: 'approve',
+                  // args: [spendPermission],
                 }),
                 value: '0x0',
               },
