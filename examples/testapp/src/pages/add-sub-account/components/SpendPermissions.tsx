@@ -49,6 +49,7 @@ export function SpendPermissions({
     };
 
     try {
+      console.log('spendPermission :>> ', spendPermission);
       const response = await provider?.request({
         method: 'wallet_sendCalls',
         params: [
@@ -56,6 +57,7 @@ export function SpendPermissions({
             version: '1',
             chainId: numberToHex(base.id),
             from: subAccountAddress,
+            // from: spendPermission.account,
             calls: [
               {
                 to: SPEND_PERMISSION_MANAGER_ADDRESS,
