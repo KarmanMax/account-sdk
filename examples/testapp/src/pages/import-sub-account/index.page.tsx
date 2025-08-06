@@ -6,7 +6,6 @@ import { SmartAccount, toCoinbaseSmartAccount } from 'viem/account-abstraction';
 import { privateKeyToAccount } from 'viem/accounts';
 import { baseSepolia } from 'viem/chains';
 
-import { unsafe_generateOrLoadPrivateKey } from '../../utils/unsafe_generateOrLoadPrivateKey';
 import { AddGlobalOwner } from './components/AddGlobalOwner';
 import { AddSubAccountDeployed } from './components/AddSubAccountDeployed';
 import { AddSubAccountUndeployed } from './components/AddSubAccountUndeployed';
@@ -38,38 +37,38 @@ export default function SubAccounts() {
   useEffect(() => {
     // THIS IS NOT SAFE, THIS IS ONLY FOR TESTING
     // IN A REAL APP YOU SHOULD NOT STORE/EXPOSE A PRIVATE KEY
-    const pk = unsafe_generateOrLoadPrivateKey();
-    const account = privateKeyToAccount(pk);
+    // const pk = unsafe_generateOrLoadPrivateKey();
+    // const account = privateKeyToAccount(pk);
 
-    const sdk = createBaseAccountSDK({
-      appName: 'CryptoPlayground',
-      preference: {
-        walletUrl: 'http://localhost:3005/connect',
-        options: 'smartWalletOnly',
-      },
-      subAccounts: {
-        toOwnerAccount: () => Promise.resolve({ account }),
-      },
-    });
+    // const sdk = createBaseAccountSDK({
+    //   appName: 'CryptoPlayground',
+    //   preference: {
+    //     walletUrl: 'http://localhost:3005/connect',
+    //     options: 'smartWalletOnly',
+    //   },
+    //   subAccounts: {
+    //     toOwnerAccount: () => Promise.resolve({ account }),
+    //   },
+    // });
 
-    if (!sdk) {
-      return;
-    }
+    // if (!sdk) {
+    //   return;
+    // }
 
-    (async () => {
-      const sa = await getSubAccount(pk);
+    // (async () => {
+    //   const sa = await getSubAccount(pk);
 
-      const isDeployed = await sa.isDeployed();
-      setDeployed(isDeployed);
-      setSubAccount(sa);
-    })();
+    //   const isDeployed = await sa.isDeployed();
+    //   setDeployed(isDeployed);
+    //   setSubAccount(sa);
+    // })();
 
-    setSDK(sdk);
-    const provider = sdk.getProvider();
+    // setSDK(sdk);
+    // const provider = sdk.getProvider();
 
-    provider.on('accountsChanged', (accounts) => {
-      console.info('accountsChanged', accounts);
-    });
+    // provider.on('accountsChanged', (accounts) => {
+    //   console.info('accountsChanged', accounts);
+    // });
   }, []);
 
   return (

@@ -2,7 +2,7 @@ import { createBaseAccountSDK } from '@base-org/account';
 import { Box, Button } from '@chakra-ui/react';
 import { useCallback, useState } from 'react';
 import { numberToHex } from 'viem';
-import { baseSepolia } from 'viem/chains';
+import { base } from 'viem/chains';
 
 export function SendCalls({
   sdk,
@@ -19,11 +19,12 @@ export function SendCalls({
 
     const provider = sdk.getProvider();
     try {
+      console.log('wallet_sendCalls :>> ');
       const response = await provider.request({
         method: 'wallet_sendCalls',
         params: [
           {
-            chainId: numberToHex(baseSepolia.id),
+            chainId: numberToHex(base.id),
             from: subAccountAddress,
             calls: [
               {
@@ -35,7 +36,7 @@ export function SendCalls({
             version: '1',
             capabilities: {
               paymasterService: {
-                url: 'https://api.developer.coinbase.com/rpc/v1/base-sepolia/S-fOd2n2Oi4fl4e1Crm83XeDXZ7tkg8O',
+                url: 'https://api.developer.coinbase.com/rpc/v1/base/S-fOd2n2Oi4fl4e1Crm83XeDXZ7tkg8O',
               },
             },
           },

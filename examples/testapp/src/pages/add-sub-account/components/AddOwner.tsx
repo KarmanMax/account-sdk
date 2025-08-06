@@ -1,7 +1,7 @@
 import { createBaseAccountSDK, getCryptoKeyAccount } from '@base-org/account';
 import { Box, Button } from '@chakra-ui/react';
 import { useCallback, useState } from 'react';
-import { baseSepolia } from 'viem/chains';
+import { base } from 'viem/chains';
 
 export function AddOwner({ sdk }: { sdk: ReturnType<typeof createBaseAccountSDK> }) {
   const [subAccount, setSubAccount] = useState<string>();
@@ -14,10 +14,11 @@ export function AddOwner({ sdk }: { sdk: ReturnType<typeof createBaseAccountSDK>
     try {
       const ckaccount = await getCryptoKeyAccount();
       const subaccount = await sdk.subAccount.addOwner({
-        chainId: baseSepolia.id,
-        publicKey: ckaccount.account.publicKey,
+        chainId: base.id,
+        // publicKey: ckaccount.account.publicKey,
+        address: '0x81DE7f79798Ffba65c6Dc8913c3096B2607F42Df'
       });
-      console.info('response', subaccount);
+      console.info('response', {ckaccount, subaccount});
       setSubAccount(subaccount);
     } catch (error) {
       console.error('error', error);

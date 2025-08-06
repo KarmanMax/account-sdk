@@ -2,7 +2,7 @@ import { createBaseAccountSDK, getCryptoKeyAccount } from '@base-org/account';
 import { Box, Button } from '@chakra-ui/react';
 import { useCallback, useState } from 'react';
 import { Hex, encodeFunctionData, numberToHex } from 'viem';
-import { baseSepolia } from 'viem/chains';
+import { base } from 'viem/chains';
 
 import {
   SPEND_PERMISSION_MANAGER_ADDRESS,
@@ -53,7 +53,7 @@ export function SpendPermissions({
         params: [
           {
             version: '1',
-            chainId: numberToHex(baseSepolia.id),
+            chainId: numberToHex(base.id),
             from: subAccountAddress,
             calls: [
               {
@@ -78,7 +78,7 @@ export function SpendPermissions({
             ],
             capabilities: {
               paymasterService: {
-                url: 'https://api.developer.coinbase.com/rpc/v1/base-sepolia/S-fOd2n2Oi4fl4e1Crm83XeDXZ7tkg8O',
+                url: 'https://api.developer.coinbase.com/rpc/v1/base/S-fOd2n2Oi4fl4e1Crm83XeDXZ7tkg8O',
               },
             },
           },
